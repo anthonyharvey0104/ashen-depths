@@ -1,0 +1,31 @@
+{
+  "name": "Ashen Depths",
+  "short_name": "Ashen Depths",
+  "description": "A turn-based dungeon crawler. Play the N64-style 3D chronicle, or the classic top-down and first-person versions.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#07060c",
+  "theme_color": "#07060c",
+  "icons": [
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

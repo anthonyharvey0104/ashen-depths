@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#07060c">
+<meta name="apple-mobile-web-app-title" content="Ashen Depths">
+<meta name="description" content="Ashen Depths — a turn-based dungeon crawler. Play the N64-style 3D chronicle, or the classic top-down and first-person versions.">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon.png">
+<title>Ashen Depths</title>
+<style>
+  :root {
+    --bg: #07060c;
+    --gold: #e0c060;
+    --gold-dim: #a08040;
+    --text: #e8e0b0;
+    --muted: #9a90a8;
+    --panel: rgba(18, 16, 32, .88);
+    --border: #6a6288;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    min-height: 100dvh;
+    background: var(--bg);
+    color: var(--text);
+    font-family: ui-monospace, "Cascadia Mono", "Segoe UI Mono", Menlo, Consolas, monospace;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: calc(24px + env(safe-area-inset-top)) 20px calc(24px + env(safe-area-inset-bottom));
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(160, 60, 20, .18), transparent 55%),
+      linear-gradient(180deg, rgba(7,6,12,.35), rgba(7,6,12,.82)),
+      var(--bg);
+  }
+  .crest {
+    width: 96px;
+    height: 96px;
+    border: 2px solid var(--gold-dim);
+    border-radius: 18px;
+    box-shadow: 0 0 24px rgba(224, 128, 48, .28), 0 8px 24px rgba(0,0,0,.5);
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    background: #120e1c;
+  }
+  .rule {
+    width: min(360px, 92vw);
+    height: 2px;
+    margin: 18px 0 14px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    box-shadow: 0 1px 0 #000;
+  }
+  h1 {
+    margin: 0;
+    font-size: clamp(28px, 8vw, 44px);
+    letter-spacing: .18em;
+    text-indent: .18em;
+    font-weight: 700;
+    color: #f0e2a0;
+    text-shadow: 0 0 22px rgba(224,128,48,.35), 0 2px 0 #000;
+    text-align: center;
+  }
+  .tag {
+    margin: 10px 0 0;
+    color: var(--muted);
+    letter-spacing: .22em;
+    text-indent: .22em;
+    font-size: 11px;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  nav {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: min(360px, 92vw);
+    margin-top: 24px;
+  }
+  .play {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 16px 18px;
+    background: var(--panel);
+    border: 2px solid var(--border);
+    color: var(--text);
+    text-decoration: none;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.35);
+  }
+  .play:hover, .play:focus-visible {
+    border-color: var(--gold);
+    color: #ffe890;
+    outline: none;
+  }
+  .play-label {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .play-sub {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: .04em;
+  }
+  .play:hover .play-sub, .play:focus-visible .play-sub { color: #c8c0a8; }
+  .play-main {
+    padding: 22px 18px;
+    border-color: var(--gold-dim);
+    background: linear-gradient(180deg, rgba(48, 32, 72, .95), rgba(18, 16, 32, .92));
+    box-shadow: 0 0 20px rgba(224, 128, 48, .18), 0 8px 24px rgba(0,0,0,.35);
+  }
+  .play-main .play-label { font-size: 20px; letter-spacing: .16em; }
+  .classic-heading {
+    margin: 6px 0 0;
+    font-size: 10px;
+    letter-spacing: .18em;
+    text-indent: .18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+  }
+  .classic {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .play-classic {
+    padding: 10px 14px;
+    gap: 2px;
+    box-shadow: none;
+  }
+  .play-classic .play-label { font-size: 13px; }
+  .play-classic .play-sub { font-size: 11px; }
+  #ios-install {
+    display: none;
+    width: min(360px, 92vw);
+    margin-top: 22px;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    color: #d8d0e8;
+    font-size: 13px;
+    line-height: 1.45;
+    text-align: center;
+    border-radius: 8px;
+  }
+  #ios-install.show { display: block; }
+</style>
+</head>
+<body>
+  <img class="crest" src="./apple-touch-icon.png" width="96" height="96" alt="Ashen Depths icon">
+  <div class="rule" aria-hidden="true"></div>
+  <h1>ASHEN DEPTHS</h1>
+  <p class="tag">A dungeon chronicle</p>
+  <nav>
+    <a class="play play-main" href="./ashen-depths-64.html">
+      <span class="play-label">Play</span>
+      <span class="play-sub">N64-style 3D — random maps and loot</span>
+    </a>
+    <p class="classic-heading">Classic versions</p>
+    <div class="classic">
+    <a class="play play-classic" href="./dungeon.html">
+      <span class="play-label">Top-down</span>
+      <span class="play-sub">32-bit dungeon chronicle</span>
+    </a>
+    <a class="play play-classic" href="./ashen-depths-fp.html">
+      <span class="play-label">First person</span>
+      <span class="play-sub">Raycasted halls of ash</span>
+    </a>
+    </div>
+  </nav>
+  <p id="ios-install">Install on iPhone: tap Share then Add to Home Screen</p>
+  <script>
+  (function () {
+    var ua = navigator.userAgent || '';
+    var isIOS = /iPad|iPhone|iPod/.test(ua) ||
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    var isSafari = /WebKit/.test(ua) && !/CriOS|FxiOS|EdgiOS|OPiOS|Chrome/.test(ua);
+    var standalone = window.navigator.standalone === true ||
+      window.matchMedia('(display-mode: standalone)').matches ||
+      window.matchMedia('(display-mode: fullscreen)').matches;
+    if (isIOS && isSafari && !standalone) {
+      var el = document.getElementById('ios-install');
+      if (el) el.classList.add('show');
+    }
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('./sw.js', { scope: './' }).catch(function () {});
+      });
+    }
+  })();
+  </script>
+</body>
+</html>
