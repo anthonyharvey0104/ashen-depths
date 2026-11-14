@@ -17,8 +17,9 @@ html,body{width:100%;height:100%;overflow:hidden;background:#05040a;position:fix
 #view{position:fixed;left:0;top:0;overflow:hidden;background:#000}
 #gl,#hud{position:absolute;left:0;top:0;width:100%;height:100%;display:block}
 #gl{image-rendering:auto}
-#btn-mute{position:fixed;top:calc(8px + env(safe-area-inset-top));right:calc(8px + env(safe-area-inset-right));z-index:40;width:42px;height:42px;border-radius:21px;background:rgba(14,12,26,.8);border:2px solid #7a6aa0;color:#f0e0a0;font-size:18px;font-family:monospace}
+#btn-mute{position:fixed;top:calc(8px + env(safe-area-inset-top));right:calc(8px + env(safe-area-inset-right));z-index:40;width:44px;height:44px;border-radius:22px;background:rgba(14,12,26,.8);border:2px solid #7a6aa0;color:#f0e0a0;font-size:18px;font-family:monospace}
 #touch-ui{position:fixed;left:0;right:0;bottom:0;padding:8px 10px calc(10px + env(safe-area-inset-bottom));display:flex;justify-content:space-between;align-items:flex-end;z-index:20;background:linear-gradient(#0d0a16,#05040a);border-top:2px solid #2a2240}
+#touch-ui{column-gap:14px}
 #touch-ui.landscape{background:none;border:none;pointer-events:none}
 #touch-ui.hidden{display:none}
 #move-pad{display:grid;grid-template-columns:repeat(3,54px);grid-template-rows:54px 54px;gap:6px}
@@ -38,7 +39,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#05040a;position:fix
 .btn{display:block;width:100%;max-width:300px;margin:8px auto;padding:12px 10px;border-radius:10px;border:2px solid #8a74c0;background:linear-gradient(#3a2e60,#221a3c);color:#fff0c8;font-size:17px;font-weight:700;letter-spacing:1px;font-family:inherit;cursor:pointer}
 .btn:hover,.btn.sel{border-color:#ffd060;background:linear-gradient(#5a4490,#2e2250)}
 .btn.danger{border-color:#c05050;background:linear-gradient(#5a2020,#301010)}
-.btn.small{display:inline-block;width:auto;padding:8px 14px;font-size:14px;margin:4px}
+.btn.small{display:inline-block;width:auto;padding:8px 14px;font-size:14px;margin:4px;min-height:44px}
 .note{font-size:12px;color:#9a8cb8;margin-top:10px;line-height:1.5}
 .savechip{font-size:13px;color:#d8c890;margin:-2px 0 6px}
 h2{font-size:26px;color:#ffd890;margin-bottom:6px;letter-spacing:2px}
@@ -49,7 +50,7 @@ h2{font-size:26px;color:#ffd890;margin-bottom:6px;letter-spacing:2px}
 #inv-body{display:flex;gap:10px;min-height:0;flex:1}
 #inv-left{width:46%;display:flex;flex-direction:column;gap:6px;min-height:0}
 #inv-right{flex:1;display:flex;flex-direction:column;min-height:0}
-.slot,.bagitem{display:flex;align-items:center;gap:8px;padding:5px 7px;border:2px solid #3a3058;border-radius:8px;background:#140f24;cursor:pointer;min-height:42px}
+.slot,.bagitem{display:flex;align-items:center;gap:8px;padding:5px 7px;border:2px solid #3a3058;border-radius:8px;background:#140f24;cursor:pointer;min-height:44px}
 .slot.sel,.bagitem.sel{border-color:#ffd060;background:#2a2048}
 .slot .lbl{width:58px;font-size:10px;color:#8a7cb0;text-transform:uppercase;letter-spacing:1px}
 .ico{width:32px;height:32px;flex:none;image-rendering:auto;border-radius:6px;background:#0a0814;border:1px solid #2a2440}
@@ -66,10 +67,12 @@ h2{font-size:26px;color:#ffd890;margin-bottom:6px;letter-spacing:2px}
 .r-common{color:#e2e2e2}.r-uncommon{color:#4ade80}.r-rare{color:#4aa8ff}.r-epic{color:#c77dff}.r-relic{color:#ffa640}
 .b-common{border-color:#5a5a64!important}.b-uncommon{border-color:#2f9a58!important}.b-rare{border-color:#2e70c0!important}.b-epic{border-color:#8a48c8!important}.b-relic{border-color:#d07a20!important}
 @media (max-width:640px),(max-height:500px){#inv .panel{display:block;overflow-y:auto;-webkit-overflow-scrolling:touch;touch-action:pan-y}#inv-body{display:block}#inv-left{width:100%;margin-bottom:6px}#bag{overflow:visible;flex:none}#inv-top{position:sticky;top:-8px;background:#1a1430;z-index:2;padding:4px 0}#inv-actions{position:sticky;bottom:-8px;background:#120e22;padding:6px 0}
-#stats{font-size:11px;padding:4px 6px}.slot .lbl{width:48px}.slot .nm small{display:none}#inv-left{gap:4px}#inv-body{flex-direction:column}#inv-left{width:100%}#inv .panel{padding:8px}.slot{min-height:36px;padding:3px 6px}.ico{width:28px;height:28px}#bag{grid-template-columns:1fr 1fr}.logo{font-size:36px}#detail{min-height:90px;font-size:12px}}
+#stats{font-size:11px;padding:4px 6px}.slot .lbl{width:48px}.slot .nm small{display:none}#inv-left{gap:4px}#inv-body{flex-direction:column}#inv-left{width:100%}#inv .panel{padding:8px}.slot{min-height:44px;padding:3px 6px}.ico{width:28px;height:28px}#bag{grid-template-columns:1fr 1fr}.logo{font-size:36px}#detail{min-height:90px;font-size:12px}}
 #confirm .panel{max-width:380px}
 #loading{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;color:#b8a8d8;font-size:16px;z-index:60;background:#05040a}
 #webgl-err{display:none;position:fixed;inset:0;z-index:70;background:#05040a;color:#ffb0a0;align-items:center;justify-content:center;text-align:center;padding:30px;font-size:16px}
+@media (max-width:389px){#move-pad{grid-template-columns:repeat(3,50px);grid-template-rows:50px 50px;gap:5px}#actions{grid-template-columns:repeat(3,52px);grid-template-rows:50px 50px;gap:5px}#btn-atk{height:105px}#touch-ui{padding-left:calc(8px + env(safe-area-inset-left));padding-right:calc(8px + env(safe-area-inset-right))}}
+@media (max-width:359px){#move-pad{grid-template-columns:repeat(3,46px);grid-template-rows:48px 48px;gap:4px}#actions{grid-template-columns:repeat(3,46px);grid-template-rows:48px 48px;gap:4px}#btn-atk{height:100px}#touch-ui{column-gap:10px;padding-left:calc(6px + env(safe-area-inset-left));padding-right:calc(6px + env(safe-area-inset-right))}#actions button{font-size:10px;letter-spacing:0}}
 </style>
 <!-- ashen-pwa:head -->
 <link rel="manifest" href="./manifest.webmanifest">
@@ -83,11 +86,11 @@ h2{font-size:26px;color:#ffd890;margin-bottom:6px;letter-spacing:2px}
 <div id="touch-ui" class="hidden">
   <div id="move-pad">
     <button id="d-tl" aria-label="Turn left">↺</button>
-    <button id="d-fwd" aria-label="Forward">▲</button>
+    <button id="d-fwd" aria-label="Forward">▲&#xFE0E;</button>
     <button id="d-tr" aria-label="Turn right">↻</button>
-    <button id="d-sl" aria-label="Strafe left">◀</button>
-    <button id="d-back" aria-label="Back">▼</button>
-    <button id="d-sr" aria-label="Strafe right">▶</button>
+    <button id="d-sl" aria-label="Strafe left">◀&#xFE0E;</button>
+    <button id="d-back" aria-label="Back">▼&#xFE0E;</button>
+    <button id="d-sr" aria-label="Strafe right">▶&#xFE0E;</button>
   </div>
   <div id="actions">
     <button id="btn-potion">POTION</button>
@@ -122,6 +125,9 @@ h2{font-size:26px;color:#ffd890;margin-bottom:6px;letter-spacing:2px}
   <button class="btn" id="b-pinv">Inventory</button>
   <button class="btn" id="b-pmute">Sound: On</button>
   <button class="btn" id="b-quit">Save &amp; Quit to Title</button>
+  <div><button class="btn small" id="b-export">Export Save</button><button class="btn small" id="b-import">Import Save</button></div>
+  <div class="note" id="save-io-note">Keep a backup of your hero as a small JSON file.</div>
+  <input type="file" id="import-file" accept="application/json,.json" style="display:none">
 </div></div>
 
 <div class="ov" id="ov-dead"><div class="panel">
@@ -268,7 +274,8 @@ const Store = (function () {
 let _silentTag = null;
 function iosPlaybackSession() {
   try { if (navigator.audioSession) { if (navigator.audioSession.type !== "playback") navigator.audioSession.type = "playback"; return; } } catch (e) { }
-  if (_silentTag || !/iP(hone|ad|od)/.test(navigator.userAgent)) return;
+  if (_silentTag) { if (_silentTag.paused) { try { const pp = _silentTag.play(); if (pp && pp.catch) pp.catch(() => { }); } catch (e) { } } return; }
+  if (!/iP(hone|ad|od)/.test(navigator.userAgent)) return;
   try { // older iOS: a looping silent <audio> opts Web Audio out of the ring/silent switch
     const sr = 8000, n = 800, b = new ArrayBuffer(44 + n * 2), v = new DataView(b);
     const w = (o, str) => { for (let i = 0; i < str.length; i++) v.setUint8(o + i, str.charCodeAt(i)); };
@@ -922,6 +929,7 @@ function placeTorches() {
    RENDERER: three.js scene with a custom N64-style vertex-lit shader
    ========================================================================== */
 const MAX_LIGHTS = 8;
+let softwareGL = false; const cullStats = { visible: 0, total: 0 };
 let renderer, scene, camera, levelGroup, spriteGroup, glCanvas, hudCanvas, hud, viewW = 640, viewH = 480, DPR = 1;
 const TEX = {};
 const SHARED = {
@@ -993,7 +1001,9 @@ function texFrom(img, repeat) {
 }
 function initRenderer() {
   glCanvas = document.getElementById("gl"); hudCanvas = document.getElementById("hud"); hud = hudCanvas.getContext("2d");
-  renderer = new THREE.WebGLRenderer({ canvas: glCanvas, antialias: true, powerPreference: "high-performance", preserveDrawingBuffer: true });
+  const TEST = /[?&]test\b/.test(location.search);
+  renderer = new THREE.WebGLRenderer({ canvas: glCanvas, antialias: !initialTouchGuess(), powerPreference: "high-performance", preserveDrawingBuffer: TEST });
+  try { const dbg = renderer.getContext().getExtension("WEBGL_debug_renderer_info"); const name = dbg ? String(renderer.getContext().getParameter(dbg.UNMASKED_RENDERER_WEBGL)) : ""; softwareGL = /SwiftShader|Basic Render|llvmpipe|Software/i.test(name); } catch (e) { }
   THREE.ColorManagement.enabled = false;
   renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
   scene = new THREE.Scene();
@@ -1252,7 +1262,11 @@ function serialize(floorForSave) {
 }
 function saveGame(floorForSave) {
   if (!player) return false;
-  try { return Store.set(SAVE_KEY, serialize(floorForSave)); } catch (e) { return false; }
+  let ok = false;
+  try { ok = Store.set(SAVE_KEY, serialize(floorForSave)); } catch (e) { ok = false; }
+  if (ok) saveGame._warned = false;
+  else if (Store.available && !saveGame._warned) { saveGame._warned = true; saveNotice = "Couldn't save: browser storage is full or blocked."; msg(saveNotice, "#ffb090"); banner = { text: "SAVE FAILED", sub: "Browser storage is full or blocked. Free some space, or use Export Save in the pause menu.", t: 0, color: "#ff9a80", life: 3200 }; }
+  return ok;
 }
 function readSave() {
   try {
@@ -1653,8 +1667,7 @@ function descend() {
   banner = { text: "FLOOR " + floorNum, sub: theme.name + (isBoss ? " — a presence waits below." : ""), t: 0, color: isBoss ? "#ff9090" : "#e0d8c0", life: 1800 };
   msg("You descend to floor " + floorNum + " (" + genKind.replace("mixed:", "mixed ") + ").", "#d0c8ff");
   animating = false; queued = null; fadeIn = 1;
-  const ok = saveGame(floorNum);
-  if (ok) msg("Progress saved.", "#8a9a8a");
+  if (saveGame(floorNum)) msg("Progress saved.", "#8a9a8a");
 }
 function onPlayerDeath() {
   player.alive = false; player.hp = 0; player.deaths++; mode = "dead"; SFX.gameover();
@@ -1819,13 +1832,24 @@ function updateScene(dt) {
     p.mesh.position.set(p.cx, p.ch, p.cy);
     if (k >= 1) { removeSprite(p.mesh); projectiles.splice(i, 1); burst(p.tx, p.ty, 0.5, "#" + new THREE.Color(p.col[0], p.col[1], p.col[2]).getHexString(), 10); p.onHit && p.onHit(); }
   }
-  for (const c of spriteGroup.children) if (c.userData.billboard) c.rotation.y = yaw;
+  // cull sprites that are far, behind the camera, or hidden behind walls (cuts draw calls)
+  const fx = Math.cos(cam.a), fz = Math.sin(cam.a), ctx0 = Math.floor(cam.x), cty0 = Math.floor(cam.y);
+  const ptx = player && player.x != null ? player.x : ctx0, pty = player && player.y != null ? player.y : cty0;
+  let vis = 0;
+  for (const c of spriteGroup.children) {
+    const dx = c.position.x - cam.x, dz = c.position.z - cam.y, d2 = dx * dx + dz * dz;
+    let v = d2 < 196 && (d2 < 2.5 || (dx * fx + dz * fz) > -0.35 * Math.sqrt(d2));
+    if (v && d2 > 2.5) { const tx = Math.floor(c.position.x), tz = Math.floor(c.position.z); v = los(ctx0, cty0, tx, tz) || los(ptx, pty, tx, tz); }
+    c.visible = v; if (v) vis++;
+    if (v && c.userData.billboard) c.rotation.y = yaw;
+  }
+  cullStats.visible = vis; cullStats.total = spriteGroup.children.length;
 }
 
 /* ==========================================================================
    HUD (2D overlay, measured text, safe-area aware)
    ========================================================================== */
-let handCache = { role: null, canvas: null }, minimapCanvas = null;
+let handCache = { role: null, canvas: null }, minimapCanvas = null, vignetteCache = { key: "" };
 function rr(g, x, y, w, h, r) { g.beginPath(); g.moveTo(x + r, y); g.arcTo(x + w, y, x + w, y + h, r); g.arcTo(x + w, y + h, x, y + h, r); g.arcTo(x, y + h, x, y, r); g.arcTo(x, y, x + w, y, r); g.closePath(); }
 function panel(g, x, y, w, h, a) { rr(g, x, y, w, h, 7); g.fillStyle = `rgba(10,8,20,${a == null ? 0.66 : a})`; g.fill(); g.strokeStyle = "rgba(140,120,190,0.55)"; g.lineWidth = 1.5; g.stroke(); }
 function txt(g, s, x, y, col, align, size, bold) {
@@ -1878,17 +1902,22 @@ function drawHand(g, W, H) {
   }
   // tint the hand by local light
   const lv = lightLevelAt(cam.x, cam.y);
-  if (!handCache.canvas || handCache.role !== role) { handCache.role = role; handCache.canvas = document.createElement("canvas"); handCache.canvas.width = iw; handCache.canvas.height = ih; }
-  const hc = handCache.canvas, hg = hc.getContext("2d");
-  hg.globalCompositeOperation = "source-over"; hg.clearRect(0, 0, iw, ih); hg.drawImage(img, 0, 0);
-  hg.globalCompositeOperation = "source-atop";
-  const T = theme.torch;
-  if (lv < 1) { hg.fillStyle = `rgba(0,0,0,${clamp(1 - lv, 0, 0.6)})`; hg.fillRect(0, 0, iw, ih); }
-  hg.fillStyle = `rgba(${T[0] * 255 | 0},${T[1] * 200 | 0},${T[2] * 140 | 0},0.12)`; hg.fillRect(0, 0, iw, ih);
+  const lvq = Math.round(lv * 20) / 20, T = theme.torch;
+  if (!handCache.canvas || handCache.role !== role) { handCache.role = role; handCache.lv = -1; handCache.canvas = document.createElement("canvas"); handCache.canvas.width = iw; handCache.canvas.height = ih; }
+  const hc = handCache.canvas;
+  if (handCache.lv !== lvq || handCache.theme !== theme) { // re-tint only when the light level (0.05 steps) or theme changes
+    handCache.lv = lvq; handCache.theme = theme;
+    const hg = hc.getContext("2d");
+    hg.globalCompositeOperation = "source-over"; hg.clearRect(0, 0, iw, ih); hg.drawImage(img, 0, 0);
+    hg.globalCompositeOperation = "source-atop";
+    if (lvq < 1) { hg.fillStyle = `rgba(0,0,0,${clamp(1 - lvq, 0, 0.6)})`; hg.fillRect(0, 0, iw, ih); }
+    hg.fillStyle = `rgba(${T[0] * 255 | 0},${T[1] * 200 | 0},${T[2] * 140 | 0},0.12)`; hg.fillRect(0, 0, iw, ih);
+  }
   const ax = W * (LANDSCAPE_TOUCH ? 0.58 : 0.64) + bobX + dx, ay = H + bobY + dy + h * 0.04;
   g.save(); g.translate(ax, ay); g.rotate(rot); g.imageSmoothingEnabled = true; g.drawImage(hc, -w * 0.5, -h, w, h); g.restore();
 }
-function project(wx, wh, wz) { const v = new THREE.Vector3(wx, wh, wz).project(camera); if (v.z > 1 || v.z < -1) return null; return { x: (v.x * 0.5 + 0.5) * viewW, y: (-v.y * 0.5 + 0.5) * viewH }; }
+const _pv = new THREE.Vector3();
+function project(wx, wh, wz) { const v = _pv.set(wx, wh, wz).project(camera); if (v.z > 1 || v.z < -1) return null; return { x: (v.x * 0.5 + 0.5) * viewW, y: (-v.y * 0.5 + 0.5) * viewH }; }
 function facingHint() {
   const d = DIR[player.facing], x = player.x + d.x, y = player.y + d.y;
   const c = chestAt(x, y); if (c) return c.locked ? (countOf("key", "key") ? "Locked chest — bump or attack to unlock (uses a key)" : "Locked chest — you need an Iron Key") : "Chest — bump or attack to open";
@@ -1946,10 +1975,11 @@ function drawHUD(dt) {
   if (hint) { g.font = `bold ${fs}px "Trebuchet MS","Segoe UI",Verdana,sans-serif`; const hw = Math.min(g.measureText(hint).width + 20, W - 20); const lines = wrapLines(g, hint, hw - 16); const hh = lines.length * (fs + 4) + 8; const hy = H * 0.62; panel(g, W / 2 - hw / 2, hy, hw, hh, 0.6); lines.forEach((ln, i) => txt(g, ln, W / 2, hy + 4 + (fs + 4) * (i + 0.5), "#f4e8c8", "center", fs)); }
   g.font = `${fs - 1}px "Trebuchet MS","Segoe UI",Verdana,sans-serif`;
   const rendered = [];
-  for (let i = recent.length - 1; i >= 0; i--) { const m = recent[i]; m.t += dt; const lines = wrapLines(g, m.text, mx1 - mx0 - 12); rendered.push({ m, lines }); }
-  for (const { m, lines } of rendered) {
+  const wrapW = Math.round(mx1 - mx0 - 12), wrapKey = wrapW + ":" + fs;
+  for (let i = recent.length - 1; i >= 0; i--) { const m = recent[i]; m.t += dt; if (m._wk !== wrapKey) { m._wk = wrapKey; m._lines = wrapLines(g, m.text, wrapW); m._widths = m._lines.map(l => g.measureText(l).width); } rendered.push({ m, lines: m._lines, widths: m._widths }); }
+  for (const { m, lines, widths } of rendered) {
     const a = clamp(1 - (m.t - 6000) / 1500, 0, 1); if (a <= 0) continue;
-    for (let j = lines.length - 1; j >= 0; j--) { if (my < topBottom + 20) break; g.globalAlpha = a; g.fillStyle = "rgba(0,0,0,0.45)"; g.fillRect(mx0, my - fs * 0.62 - 2, Math.min(mx1 - mx0, g.measureText(lines[j]).width + 12), fs + 4); txt(g, lines[j], mx0 + 6, my, m.color, "left", fs - 1, false); g.globalAlpha = 1; my -= fs + 4; }
+    for (let j = lines.length - 1; j >= 0; j--) { if (my < topBottom + 20) break; g.globalAlpha = a; g.fillStyle = "rgba(0,0,0,0.45)"; g.fillRect(mx0, my - fs * 0.62 - 2, Math.min(mx1 - mx0, widths[j] + 12), fs + 4); txt(g, lines[j], mx0 + 6, my, m.color, "left", fs - 1, false); g.globalAlpha = 1; my -= fs + 4; }
     my -= 2;
   }
   // banner
@@ -1968,7 +1998,7 @@ function drawHUD(dt) {
     }
   }
   if (redFlash > 0) { g.fillStyle = `rgba(200,20,20,${redFlash * 0.35})`; g.fillRect(0, 0, W, H); redFlash = Math.max(0, redFlash - dt / 350); }
-  if (player.hp / mh < 0.3 && player.alive) { const v = g.createRadialGradient(W / 2, H / 2, Math.min(W, H) * 0.3, W / 2, H / 2, Math.max(W, H) * 0.7); v.addColorStop(0, "rgba(120,0,0,0)"); v.addColorStop(1, `rgba(120,0,0,${0.35 + 0.1 * Math.sin(time * 5)})`); g.fillStyle = v; g.fillRect(0, 0, W, H); }
+  if (player.hp / mh < 0.3 && player.alive) { const key = W + "x" + H; if (vignetteCache.key !== key) { const v = g.createRadialGradient(W / 2, H / 2, Math.min(W, H) * 0.3, W / 2, H / 2, Math.max(W, H) * 0.7); v.addColorStop(0, "rgba(120,0,0,0)"); v.addColorStop(1, "rgba(120,0,0,1)"); vignetteCache = { key, grad: v }; } g.globalAlpha = 0.35 + 0.1 * Math.sin(time * 5); g.fillStyle = vignetteCache.grad; g.fillRect(0, 0, W, H); g.globalAlpha = 1; }
   if (fadeIn > 0) { g.fillStyle = `rgba(0,0,0,${fadeIn})`; g.fillRect(0, 0, W, H); fadeIn = Math.max(0, fadeIn - dt / 600); }
 }
 
@@ -1985,14 +2015,25 @@ function iconURL(role) {
   try { u = im instanceof HTMLImageElement ? im.src : im.toDataURL("image/png"); } catch (e) { }
   return (iconURLCache[role] = u);
 }
+let KL = c => ({ KeyW: "W", KeyA: "A", KeyS: "S", KeyD: "D", KeyQ: "Q", KeyE: "E", KeyF: "F", KeyI: "I", KeyP: "P", KeyM: "M" })[c] || c.replace("Key", "");
+let keyLabelsExact = false;
+function loadKeyLabels() { // Chrome/Edge expose the real layout (AZERTY shows Z/Q/S/D etc.)
+  try {
+    if (navigator.keyboard && navigator.keyboard.getLayoutMap) navigator.keyboard.getLayoutMap().then(m => { KL = c => String(m.get(c) || c.replace("Key", "")).toUpperCase(); keyLabelsExact = true; if (mode === "title") refreshTitle(); }).catch(() => { });
+  } catch (e) { }
+}
+function keyHelp() {
+  const pos = keyLabelsExact ? "" : " (letters shown at their QWERTY positions)";
+  return `${KL("KeyW")}/${KL("KeyS")} or ↑/↓ move · ${KL("KeyA")}/${KL("KeyD")} or ←/→ turn · ${KL("KeyQ")}/${KL("KeyE")} strafe · Space attack · ${KL("KeyF")} potion · ${KL("KeyI")} inventory · ${KL("KeyP")} pause · ${KL("KeyM")} mute${pos}`;
+}
 function refreshTitle() {
   const sv = readSave();
   $("b-continue").style.display = sv ? "block" : "none";
   $("title-save").innerHTML = sv ? `Saved hero: Level ${sv.p.level} · Floor ${sv.floor} · ${sv.p.gold} gold · deepest ${sv.p.bestFloor || sv.floor}` : "";
   $("title-help").innerHTML = SHOW_TOUCH
-    ? "▲▼ move · ◀ ▶ strafe · ↺ ↻ turn · ATTACK strikes · BAG opens inventory"
-    : "W/S or ↑/↓ move · A/D or ←/→ turn · Q/E strafe · Space attack · F potion · I inventory · P pause · M mute";
-  $("title-storage").innerHTML = Store.available ? "Progress auto-saves after every floor and on death." : "<span style='color:#ffb090'>Saving isn't available in this browser mode, so progress lasts only until you close the page.</span>";
+    ? "▲\uFE0E▼\uFE0E move · ◀\uFE0E ▶\uFE0E strafe · ↺ ↻ turn · ATTACK strikes · BAG opens inventory"
+    : keyHelp();
+  $("title-storage").innerHTML = (softwareGL ? "<span style='color:#ffd090'>Your browser is drawing 3D in software, so it may be slow. Turn on hardware acceleration in its settings for smooth play.</span><br>" : "") + (Store.available ? "Progress auto-saves after every floor and on death." : "<span style='color:#ffb090'>Saving isn't available in this browser mode, so progress lasts only until you close the page.</span>");
   $("b-continue").classList.toggle("sel", !!sv); $("b-new").classList.toggle("sel", !sv);
 }
 function goTitle() { mode = "title"; hideOverlays(); setupTitleScene(); refreshTitle(); showOverlay("ov-title"); resize(); }
@@ -2000,7 +2041,7 @@ function startNew() {
   wipeSave(); player = newPlayer(); floorNum = 1; msgs = []; hideOverlays(); mode = "play"; resize();
   generateFloor(); fadeIn = 1;
   banner = { text: "ASHEN DEPTHS 64", sub: "Floor 1 — " + theme.name, t: 0, color: "#ffc070", life: 2200 };
-  msg(SHOW_TOUCH ? "Use ▲ to advance, ↺ ↻ to turn, ATTACK to strike, BAG for gear." : "W to advance, A/D to turn, Space to strike, I for your bag.", "#c8c0e0");
+  msg(SHOW_TOUCH ? "Use ▲\uFE0E to advance, ↺ ↻ to turn, ATTACK to strike, BAG for gear." : KL("KeyW") + " or ↑ to advance, " + KL("KeyA") + "/" + KL("KeyD") + " to turn, Space to strike, " + KL("KeyI") + " for your bag.", "#c8c0e0");
   saveGame(1);
 }
 function continueGame() {
@@ -2012,6 +2053,30 @@ function continueGame() {
 function togglePause() {
   if (mode === "play") { mode = "paused"; $("pause-info").innerHTML = `Floor ${floorNum} · Level ${player.level} · ${player.gold} gold<br>${theme.name} (${genKind.replace("mixed:", "mixed ")})`; showOverlay("ov-pause"); }
   else if (mode === "paused") { mode = "play"; hideOverlays(); }
+}
+/* ---- export / import save (JSON file) ---- */
+function exportSave() {
+  if (player && (mode === "paused" || mode === "play")) saveGame(floorNum);
+  const raw = Store.get(SAVE_KEY) || (player ? serialize(floorNum) : null);
+  if (!raw) { $("save-io-note").textContent = "No saved hero yet."; return; }
+  try {
+    const url = URL.createObjectURL(new Blob([raw], { type: "application/json" }));
+    const a = document.createElement("a"); a.href = url; a.download = "ashen-depths-64-save.json"; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 4000);
+    $("save-io-note").textContent = "Save exported as ashen-depths-64-save.json.";
+  } catch (e) { $("save-io-note").textContent = "Export isn't supported in this browser."; }
+}
+function importSave(file) {
+  const rd = new FileReader();
+  rd.onload = () => {
+    try {
+      const d = JSON.parse(String(rd.result)); if (!d || d.v !== 1 || !d.p) throw new Error("bad");
+      Store.set(SAVE_KEY, JSON.stringify(d));
+      $("save-io-note").textContent = "Save imported. Level " + d.p.level + ", floor " + d.floor + ".";
+      if (mode === "title") refreshTitle(); else { floorNum = applySave(d); generateFloor(); mode = "play"; hideOverlays(); banner = { text: "SAVE IMPORTED", sub: "Floor " + floorNum, t: 0, color: "#a0e0a0", life: 2000 }; }
+    } catch (e) { $("save-io-note").textContent = "That file isn't an Ashen Depths 64 save."; }
+  };
+  rd.readAsText(file);
 }
 /* ---- inventory ---- */
 let invSel = { area: "bag", i: 0 }, invPrevMode = "play";
@@ -2139,6 +2204,9 @@ function bindInput() {
   $("b-pmute").addEventListener("click", () => setMuted(!SFX.muted));
   $("b-quit").addEventListener("click", () => { saveGame(floorNum); goTitle(); });
   $("b-rise").addEventListener("click", riseAgain);
+  $("b-export").addEventListener("click", exportSave);
+  $("b-import").addEventListener("click", () => $("import-file").click());
+  $("import-file").addEventListener("change", e => { const f = e.target.files && e.target.files[0]; if (f) importSave(f); e.target.value = ""; });
   $("b-dead-title").addEventListener("click", goTitle);
   bindInvClicks();
   window.addEventListener("resize", resize); if (window.visualViewport) window.visualViewport.addEventListener("resize", resize);
@@ -2188,7 +2256,7 @@ function boot() {
   loadArt().then(() => {
     makeDerived(); composeHands();
     try { initRenderer(); } catch (e) { $("loading").style.display = "none"; const er = $("webgl-err"); er.style.display = "flex"; er.innerHTML = "This game needs WebGL 2 (3D graphics).<br><br>Please open it in a current version of Chrome, Edge, Firefox or Safari (iOS 15+), and make sure hardware acceleration is turned on."; return; }
-    SHOW_TOUCH = initialTouchGuess();
+    SHOW_TOUCH = initialTouchGuess(); loadKeyLabels();
     if (Store.get("ashenDepths64.muted") === "1") setMuted(true);
     bindInput(); resize();
     $("loading").style.display = "none";
@@ -2201,7 +2269,8 @@ function bindEarly() { glCanvas = $("gl"); hudCanvas = $("hud"); hud = hudCanvas
 /* ---- test / debug hooks (used by the automated Playwright checks) ---- */
 window.__AD64 = {
   errors: _errors, art: ART_REPORT, store: () => Store.available,
-  state: () => ({ mode, floor: floorNum, gen: genKind, theme: theme && theme.name, player: player && { x: player.x, y: player.y, facing: player.facing, hp: player.hp, maxHp: player && player.baseMaxHp != null ? maxHp() : 0, level: player.level, gold: player.gold, inv: player.inv && player.inv.length, weapon: player.equip && player.equip.weapon && player.equip.weapon.name }, monsters: monsters.filter(m => m.alive).length, boss: currentBoss && { name: currentBoss.name, hp: currentBoss.hp, x: currentBoss.x, y: currentBoss.y, seen: currentBoss.seen }, chests: chests.length, items: floorItems.length, torches: torches.length, view: [viewW, viewH], touch: SHOW_TOUCH, landscape: LANDSCAPE_TOUCH, gl: renderer && renderer.getContext() && renderer.getContext().constructor.name, buffer: renderer && [renderer.domElement.width, renderer.domElement.height], drawCalls: renderer && renderer.info.render.calls, tris: renderer && renderer.info.render.triangles }),
+  state: () => ({ mode, floor: floorNum, gen: genKind, theme: theme && theme.name, player: player && { x: player.x, y: player.y, facing: player.facing, hp: player.hp, maxHp: player && player.baseMaxHp != null ? maxHp() : 0, level: player.level, gold: player.gold, inv: player.inv && player.inv.length, weapon: player.equip && player.equip.weapon && player.equip.weapon.name }, monsters: monsters.filter(m => m.alive).length, boss: currentBoss && { name: currentBoss.name, hp: currentBoss.hp, x: currentBoss.x, y: currentBoss.y, seen: currentBoss.seen }, chests: chests.length, items: floorItems.length, torches: torches.length, view: [viewW, viewH], touch: SHOW_TOUCH, landscape: LANDSCAPE_TOUCH, gl: renderer && renderer.getContext() && renderer.getContext().constructor.name, buffer: renderer && [renderer.domElement.width, renderer.domElement.height], drawCalls: renderer && renderer.info.render.calls, pdb: renderer && renderer.getContext().getContextAttributes().preserveDrawingBuffer, aa: renderer && renderer.getContext().getContextAttributes().antialias, tris: renderer && renderer.info.render.triangles }),
+  cull: () => ({ ...cullStats }), lastMsg: () => msgs.length ? msgs[msgs.length - 1].text : "", toTitle: () => goTitle(),
   startNew, continueGame, dispatch, openInv, closeInv, readSave, saveGame: () => saveGame(floorNum),
   give(n) { for (let i = 0; i < (n || 8); i++) addToInv(rollLoot(floorNum + 3, i % 3)); addToInv(makeKey(1)); addToInv(makeScroll("fireball")); },
   gotoFloor(f) { floorNum = f - 1; descend(); },
