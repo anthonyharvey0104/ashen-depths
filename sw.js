@@ -1,12 +1,12 @@
 /* Ashen Depths service worker
  * Small site files are precached atomically (cache.addAll). Large files such as
- * the ~2 MB v3 game are cached separately with retries, so a flaky first load
+ * the ~6 MB game are cached separately with retries, so a flaky first load
  * of the big file never fails the install. Anything still missing is cached
  * the first time it loads successfully, and on activate the previous cache's
  * copy is kept as an offline fallback. Relative URLs resolve against this
  * script, so the app works at a GitHub Pages subpath as well as at a domain root.
  */
-const CACHE_NAME = 'ashen-depths-a653eac00edd';
+const CACHE_NAME = 'ashen-depths-4f3235cc0bc6';
 const PRECACHE_URLS = [
   './',
   './index.html',
@@ -90,21 +90,32 @@ self.addEventListener('activate', function (event) {
 self.addEventListener('fetch', function (event) {
   if (event.request.method !== 'GET') return;
   var sameOrigin = new URL(event.request.url).origin === self.location.origin;
+  var isNav = event.request.mode === 'navigate';
   event.respondWith(
     caches.open(CACHE_NAME).then(function (cache) {
-      return cache.match(event.request, { ignoreSearch: true }).then(function (cached) {
-        if (cached) return cached;
+      var fromNet = function () {
         return fetch(event.request).then(function (response) {
-          // runtime-cache same-origin files that missed precache (e.g. v3 after a flaky install)
           if (sameOrigin && response && response.ok && response.type === 'basic') {
             var copy = response.clone();
             event.waitUntil(cache.put(event.request, copy).catch(function () {}));
           }
           return response;
-        }).catch(function () {
+        });
+      };
+      if (isNav) {
+        // Network-first for documents so a visit after a deploy can pick up the new build.
+        return fromNet().catch(function () {
+          return cache.match(event.request, { ignoreSearch: true }).then(function (cached) {
+            if (cached) return cached;
+            return cache.match('./index.html');
+          }).then(function (any) { return any || Response.error(); });
+        });
+      }
+      return cache.match(event.request, { ignoreSearch: true }).then(function (cached) {
+        if (cached) return cached;
+        return fromNet().catch(function () {
           return caches.match(event.request, { ignoreSearch: true }).then(function (any) {
             if (any) return any;
-            if (event.request.mode === 'navigate') return cache.match('./index.html');
             return Response.error();
           });
         });
