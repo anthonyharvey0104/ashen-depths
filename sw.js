@@ -6,7 +6,7 @@
  * copy is kept as an offline fallback. Relative URLs resolve against this
  * script, so the app works at a GitHub Pages subpath as well as at a domain root.
  */
-const CACHE_NAME = 'ashen-depths-253829fc1692';
+const CACHE_NAME = 'ashen-depths-e2afcff9f6af';
 const PRECACHE_URLS = [
   './',
   './index.html',
