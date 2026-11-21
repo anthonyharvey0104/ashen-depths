@@ -1,0 +1,63 @@
+{
+ "files": {
+  "small": "shimmer_s_8.png",
+  "medium": "shimmer_m_12.png",
+  "large": "shimmer_l_16.png",
+  "soft_mote": "shimmer_mote_16.png"
+ },
+ "sheet_layout": "4 frames across (0 full star, 1 star+glints, 2 small star, 3 dot), 3 colour rows: 0 gold, 1 white-cyan, 2 violet. @2x files are the same art nearest-neighbour doubled.",
+ "spawn": {
+  "rule": "while the fairy moves, spawn 1 particle per 6 px travelled (max 1 per 16 ms); when idle, 1 every 180 ms",
+  "offset": "behind the fairy, at her skirt (sprite centre +0,+14 px at 64px scale), jitter +/-4 px",
+  "max_alive": 60,
+  "mix_size": {
+   "small": 0.5,
+   "medium": 0.35,
+   "large": 0.15
+  },
+  "mix_colour": {
+   "gold": 0.6,
+   "white": 0.25,
+   "violet": 0.15
+  },
+  "soft_mote": "add one soft_mote with every 3rd particle, same lifetime"
+ },
+ "life_ms": [
+  450,
+  700
+ ],
+ "frames": "start on frame 0, step 0->1->2->3 evenly across the life (about 12 fps); mote has no frames",
+ "alpha": "1.0 for the first 15% of life, then ease-out quad to 0: a = 1-((t-0.15)/0.85)^2",
+ "scale": "1.0 -> 0.5 over life (integer steps of the pixel scale preferred: 2x then 1x)",
+ "motion": {
+  "vx_px_s": [
+   -8,
+   8
+  ],
+  "vy_px_s": [
+   6,
+   18
+  ],
+  "note": "slow drift down and a little sideways; inherit 10% of fairy velocity"
+ },
+ "blend": "additive ('lighter' in canvas 2D) over dark backgrounds; normal alpha is fine too",
+ "pixel_snap": "round positions to whole pixels at the display scale, image smoothing off",
+ "fairy": {
+  "idle": "fairy_idle_64.png 6 frames 64x64, 8 fps loop",
+  "fly": "fairy_fly_64.png 6 frames 64x64, 14 fps loop, use when cursor speed > 40 px/s",
+  "anchor": "(32,30) of each 64 frame = her chest; put this point ~18 px up-left of the cursor/finger so it is not covered",
+  "flip": "mirror horizontally when moving left",
+  "halo": "fairy_glow_halo_128.png centred on anchor, additive, or fairy_glow_pulse_128.png 4 frames at 4 fps",
+  "follow": "ease toward target: pos += (target-pos)*0.15 per 60fps frame, plus a 1.5 px sine bob at 1.2 Hz"
+ },
+ "burst": {
+  "file": "sparkle_burst_sheet.png",
+  "frames": 10,
+  "frame_size": [
+   256,
+   256
+  ],
+  "fps": 18,
+  "play": "once, centred behind the title, when the unlock screen opens; optional second burst at 60% scale 300 ms later"
+ }
+}

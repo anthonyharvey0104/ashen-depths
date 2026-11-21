@@ -1,12 +1,12 @@
 /* Ashen Depths service worker
  * Small site files are precached atomically (cache.addAll). Large files such as
- * the ~6 MB game are cached separately with retries, so a flaky first load
- * of the big file never fails the install. Anything still missing is cached
+ * area music and other larger files are cached separately with retries, so a flaky first load
+ * of a large file never fails the install. Large fetches never block skipWaiting. Anything still missing is cached
  * the first time it loads successfully, and on activate the previous cache's
  * copy is kept as an offline fallback. Relative URLs resolve against this
  * script, so the app works at a GitHub Pages subpath as well as at a domain root.
  */
-const CACHE_NAME = 'ashen-depths-e2afcff9f6af';
+const CACHE_NAME = 'ashen-depths-4418b82145f2';
 const PRECACHE_URLS = [
   './',
   './index.html',
@@ -16,21 +16,47 @@ const PRECACHE_URLS = [
   './icons/icon-192.png',
   './icons/icon-512.png',
   './icons/icon-512-maskable.png',
+  './ashen-depths-64.html',
   './dungeon.html',
-  './ashen-depths-fp.html'
+  './ashen-depths-fp.html',
+  './assets/manifest.json',
+  './assets/three.js',
+  './assets/key_art.webp'
 ];
 const LARGE_URLS = [
-  './ashen-depths-64.html'
+  './assets/audio/v43/music_cave.mp3',
+  './assets/audio/v43/music_dungeon_ashkar.mp3',
+  './assets/audio/v43/music_dungeon_hollow.mp3',
+  './assets/audio/v43/music_dungeon_isolde.mp3',
+  './assets/audio/v43/music_dungeon_morgana.mp3',
+  './assets/audio/v43/music_dungeon_vesper.mp3',
+  './assets/audio/v43/music_overworld.mp3',
+  './assets/audio/v43/music_town.mp3',
+  './assets/audio/v43/amb_cave.mp3',
+  './assets/audio/v43/amb_dungeon.mp3',
+  './assets/audio/v43/amb_overworld.mp3',
+  './assets/audio/v43/amb_town.mp3'
 ];
 
 function sleep(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+
+function withTimeout(p, ms) {
+  return new Promise(function (resolve, reject) {
+    var t = setTimeout(function () { reject(new Error('timeout')); }, ms);
+    p.then(function (v) { clearTimeout(t); resolve(v); }, function (e) { clearTimeout(t); reject(e); });
+  });
+}
+
+function fetchTimeout(request, ms) {
+  return withTimeout(fetch(request), ms || 8000);
+}
 
 function cacheWithRetry(cache, url, tries) {
   tries = tries || 4;
   var attempt = 0;
   function go() {
     attempt++;
-    return fetch(new Request(url, { cache: 'reload' })).then(function (res) {
+    return fetchTimeout(new Request(url, { cache: 'reload' }), 8000).then(function (res) {
       if (!res || !res.ok) throw new Error('HTTP ' + (res && res.status));
       return cache.put(url, res);
     }).catch(function (err) {
@@ -53,12 +79,15 @@ function cacheLarge(cache) {
 self.addEventListener('install', function (event) {
   event.waitUntil(
     caches.open(CACHE_NAME).then(function (cache) {
-      // all-or-nothing for the small files only
-      return cache.addAll(PRECACHE_URLS).then(function () {
-        return cacheLarge(cache);          // never rejects; missing files are retried later
+      // Small files only; do not block install / skipWaiting on large music/amb fetches.
+      return withTimeout(cache.addAll(PRECACHE_URLS), 12000).catch(function () {
+        return Promise.all(PRECACHE_URLS.map(function (url) {
+          return cacheWithRetry(cache, url, 2).then(function () { return true; }, function () { return false; });
+        }));
+      }).then(function () {
+        cacheLarge(cache);  // kicked off here, awaited on activate
+        return self.skipWaiting();
       });
-    }).then(function () {
-      return self.skipWaiting();
     })
   );
 });
@@ -93,8 +122,8 @@ self.addEventListener('fetch', function (event) {
   var isNav = event.request.mode === 'navigate';
   event.respondWith(
     caches.open(CACHE_NAME).then(function (cache) {
-      var fromNet = function () {
-        return fetch(event.request).then(function (response) {
+      var fromNet = function (ms) {
+        return fetchTimeout(event.request, ms || 8000).then(function (response) {
           if (sameOrigin && response && response.ok && response.type === 'basic') {
             var copy = response.clone();
             event.waitUntil(cache.put(event.request, copy).catch(function () {}));
@@ -104,10 +133,13 @@ self.addEventListener('fetch', function (event) {
       };
       if (isNav) {
         // Network-first for documents so a visit after a deploy can pick up the new build.
-        return fromNet().catch(function () {
+        // A short timeout prevents a hung navigation fetch from blocking the title.
+        return fromNet(4000).catch(function () {
           return cache.match(event.request, { ignoreSearch: true }).then(function (cached) {
             if (cached) return cached;
-            return cache.match('./index.html');
+            return cache.match('./index.html').then(function (idx) {
+              return idx || cache.match('./ashen-depths-64.html');
+            });
           }).then(function (any) { return any || Response.error(); });
         });
       }

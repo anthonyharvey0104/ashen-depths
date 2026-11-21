@@ -1,0 +1,136 @@
+{
+ "spec": "design/retirement-build-spec-v1.md \u00a78 (stages 0-6, credit 0/1/2/3/5/7/10), \u00a710 Bram stall, \u00a75a ceremony",
+ "paths_relative_to": "/workspace/dungeon-game/",
+ "placement": {
+  "facade_a": "burnt_house_facade at (4,8)",
+  "facade_b": "burnt_house_facade at (29,8)",
+  "fountain": "(19,19)",
+  "well": "(16,18) unchanged; Elda stands beside it",
+  "gate": "south gate"
+ },
+ "stages": {
+  "0": {
+   "credit": 0,
+   "note": "Ruined (current look). Elda talkable at the Well.",
+   "facade_a": "art64/world/burnt_house_facade.png",
+   "facade_b": "art64/world/burnt_house_facade.png",
+   "wall": "art64/world/town_wall.webp",
+   "window": "art64/world/town_wall_window.webp",
+   "ground": "art64/world/town_ground.webp",
+   "fountain": "art64/world/broken_fountain.png",
+   "gate": "art64/world/town_gate.png",
+   "rubble": true,
+   "extras": []
+  },
+  "1": {
+   "credit": 1,
+   "note": "Chimney smoke; one window lit. First shop.",
+   "facade_a": "art/v4.3/town/facade_stage1.png",
+   "facade_b": "art64/world/burnt_house_facade.png",
+   "wall": "art64/world/town_wall.webp",
+   "window": "art/v4.3/town/town_wall_window_lit.png",
+   "ground": "art64/world/town_ground.webp",
+   "fountain": "art64/world/broken_fountain.png",
+   "gate": "art64/world/town_gate.png",
+   "rubble": true,
+   "extras": []
+  },
+  "2": {
+   "credit": 2,
+   "note": "Second facade soft repair; fountain ripple. Bram expands.",
+   "facade_a": "art/v4.3/town/facade_stage1.png",
+   "facade_b": "art/v4.3/town/facade_stage2.png",
+   "wall": "art/v4.3/town/town_wall_patched.png",
+   "window": "art/v4.3/town/town_wall_window_boarded.png",
+   "ground": "art64/world/town_ground.webp",
+   "fountain": "art/v4.3/town/fountain_ripple.png",
+   "gate": "art64/world/town_gate.png",
+   "rubble": true,
+   "extras": []
+  },
+  "3": {
+   "credit": 3,
+   "note": "Door open; rubble cleared near square. Bram stall if no Merchant.",
+   "facade_a": "art/v4.3/town/facade_stage3.png",
+   "facade_b": "art/v4.3/town/facade_stage2.png",
+   "wall": "art/v4.3/town/town_wall_patched.png",
+   "window": "art/v4.3/town/town_wall_patched_window_lit.png",
+   "ground": "art64/world/town_ground.webp",
+   "fountain": "art/v4.3/town/fountain_ripple.png",
+   "gate": "art64/world/town_gate.png",
+   "rubble": "far_only",
+   "extras": [
+    "art/v4.3/town/bram_stall.png"
+   ]
+  },
+  "4": {
+   "credit": 5,
+   "note": "Garden patch and/or stage planks. Calden if Morgana beaten.",
+   "facade_a": "art/v4.3/town/facade_stage4.png",
+   "facade_b": "art/v4.3/town/facade_stage3.png",
+   "wall": "art/v4.3/town/town_wall_patched.png",
+   "window": "art/v4.3/town/town_wall_patched_window_lit.png",
+   "ground": "art64/world/town_ground.webp",
+   "fountain": "art/v4.3/town/fountain_ripple.png",
+   "gate": "art64/world/town_gate.png",
+   "rubble": "far_only",
+   "extras": [
+    "art/v4.3/town/bram_stall.png",
+    "art/v4.3/town/garden_patch.png",
+    "art/v4.3/town/square_stage.png"
+   ]
+  },
+  "5": {
+   "credit": 7,
+   "note": "Both facades inhabited; gate banner.",
+   "facade_a": "art/v4.3/town/facade_stage5.png",
+   "facade_b": "art/v4.3/town/facade_stage5.png",
+   "wall": "art/v4.3/town/town_wall_restored.png",
+   "window": "art/v4.3/town/town_wall_restored_window_lit.png",
+   "ground": "art64/world/town_ground.webp",
+   "fountain": "art/v4.3/town/fountain_ripple.png",
+   "gate": "art/v4.3/town/town_gate_banner.png",
+   "rubble": false,
+   "extras": [
+    "art/v4.3/town/bram_stall.png",
+    "art/v4.3/town/garden_patch.png",
+    "art/v4.3/town/square_stage.png"
+   ]
+  },
+  "6": {
+   "credit": 10,
+   "note": "Full lights / market / garden / stage. All shops.",
+   "facade_a": "art/v4.3/town/facade_stage6.png",
+   "facade_b": "art/v4.3/town/facade_stage5.png",
+   "wall": "art/v4.3/town/town_wall_restored.png",
+   "window": "art/v4.3/town/town_wall_restored_window_lit.png",
+   "ground": "art/v4.3/town/town_ground_swept.png",
+   "fountain": "art/v4.3/town/fountain_restored.png",
+   "gate": "art/v4.3/town/town_gate_banner.png",
+   "rubble": false,
+   "extras": [
+    "art/v4.3/town/bram_stall.png",
+    "art/v4.3/town/garden_patch.png",
+    "art/v4.3/town/square_stage.png",
+    "art/v4.3/town/lantern_post.png"
+   ]
+  }
+ },
+ "notes": {
+  "rubble": "true = all rubble props; 'far_only' = remove rubble near the square (spec stage 3); false = remove all",
+  "square_stage": "spec ties the Square Stage to the Bard trade; show only if Bard retired (any stage >= 4) or per Grok Bot's call",
+  "bram_stall": "show when rebuildStage >= 3 and no Merchant retired; hide when Merchant retires",
+  "npcs": {
+   "elda": "art/v4.3/town/npc_elda.png, from stage 0",
+   "bram": "art/v4.3/town/npc_bram.png, stage >= 1-2 at the gate",
+   "calden": "art/v4.3/town/npc_calden.png, after Morgana + stage >= 4"
+  }
+ },
+ "retirement": {
+  "beat1_hang_gear": "art/v4.3/retirement/ceremony_hang_gear.png",
+  "beat2_trade_reveal": "art/v4.3/retirement/trade_reveal_medallion.png (+ reveal line as UI text)",
+  "beat3_shop_opens_banner": "art/v4.3/retirement/banner_town_wakes.png (UI text 'THE TOWN WAKES' over the blank ribbon) + fx_hearth_embers_strip.png",
+  "beat4_new_hero": "art/v4.3/retirement/ceremony_new_hero.png + fx_rise_pillar.png",
+  "confirm_screen_portrait_frame": "art/v4.3/retirement/frame_retiring_hero.png (transparent inner opening x103-407, y113-407 of 512)"
+ }
+}

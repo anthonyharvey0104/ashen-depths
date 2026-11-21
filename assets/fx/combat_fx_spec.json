@@ -1,0 +1,213 @@
+{
+ "plan_item": "v4.3 item 3 - A4 Combat effects and hit feedback (Art Bot): hit flashes, damage numbers, screen shake option",
+ "hit_flash": {
+  "enemy_sprite_tint": {
+   "how": "existing shader uniforms uFlash / uFlashCol on the billboard (game.js already sets def.flash = 1)",
+   "normal_hit": {
+    "color_rgb": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "peak": 0.85,
+    "hold_ms": 40,
+    "decay_ms": 120
+   },
+   "crit_hit": {
+    "sequence": [
+     {
+      "color_rgb": [
+       1.0,
+       1.0,
+       1.0
+      ],
+      "ms": 50
+     },
+     {
+      "color_rgb": [
+       1.0,
+       0.25,
+       0.15
+      ],
+      "ms": 70
+     }
+    ],
+    "peak": 1.0,
+    "decay_ms": 160
+   },
+   "boss_hit": {
+    "color_rgb": [
+     1.0,
+     0.9,
+     0.75
+    ],
+    "peak": 0.7,
+    "decay_ms": 140
+   }
+  },
+  "player_hurt_screen": {
+   "file": "screen_flash_red.png",
+   "how": "stretch over the 3D view, alpha = 0.55 * redFlash, decay ~350ms (current redFlash timing); replaces the flat rgba(200,20,20,0.35) fill with a red edge vignette"
+  },
+  "crit_screen": {
+   "file": "screen_flash_white.png",
+   "how": "optional 1-2 frame pop on player crits, alpha 0.45 then 0 over 120ms"
+  },
+  "sprite": {
+   "file": "hitflash_spark.png",
+   "frame_w": 64,
+   "frame_h": 64,
+   "frames": 4,
+   "fps": 24,
+   "use": "generic white/red spark drawn on any hit, under the element impact"
+  }
+ },
+ "damage_numbers": {
+  "file": "damage_font.png",
+  "atlas": "damage_font.json",
+  "map": {
+   "enemy damage": "normal",
+   "critical": "crit (draw CRIT word above the number, 1.5x)",
+   "heal / drain": "heal (+ glyph then digits)",
+   "miss": "miss (MISS word)",
+   "player takes damage": "hurt (- glyph then digits)"
+  },
+  "motion": "pop in at 1.3x -> 1.0x over 80ms, rise ~0.5 world units, fade alpha = 1 - (t/life)^2, life 950ms (same as addFloat)"
+ },
+ "screen_shake_option": {
+  "setting": "Off / Low / Full (default Full); Low = 50% magnitude, Off = 0",
+  "current_values_full": {
+   "enemy hit": [
+    2,
+    160
+   ],
+   "enemy crit": [
+    5,
+    160
+   ],
+   "player hit": [
+    6,
+    280
+   ],
+   "player crit taken": [
+    9,
+    280
+   ]
+  },
+  "units": "[magnitude px, ms] as passed to shake(m, d)"
+ },
+ "impacts": {
+  "impact_slash": {
+   "file": "impact_slash.png",
+   "frame_w": 96,
+   "frame_h": 96,
+   "frames": 8,
+   "fps": 24,
+   "loop": false,
+   "anchor": "center",
+   "blend": "normal (alpha); additive also fine for all but blunt/poison/frost"
+  },
+  "impact_blunt": {
+   "file": "impact_blunt.png",
+   "frame_w": 96,
+   "frame_h": 96,
+   "frames": 8,
+   "fps": 20,
+   "loop": false,
+   "anchor": "center",
+   "blend": "normal (alpha); additive also fine for all but blunt/poison/frost"
+  },
+  "impact_pierce": {
+   "file": "impact_pierce.png",
+   "frame_w": 96,
+   "frame_h": 96,
+   "frames": 6,
+   "fps": 24,
+   "loop": false,
+   "anchor": "center",
+   "blend": "normal (alpha); additive also fine for all but blunt/poison/frost"
+  },
+  "impact_fire": {
+   "file": "impact_fire.png",
+   "frame_w": 96,
+   "frame_h": 96,
+   "frames": 8,
+   "fps": 16,
+   "loop": false,
+   "anchor": "center",
+   "blend": "normal (alpha); additive also fine for all but blunt/poison/frost"
+  },
+  "impact_frost": {
+   "file": "impact_frost.png",
+   "frame_w": 96,
+   "frame_h": 96,
+   "frames": 8,
+   "fps": 16,
+   "loop": false,
+   "anchor": "center",
+   "blend": "normal (alpha); additive also fine for all but blunt/poison/frost"
+  },
+  "impact_arcane": {
+   "file": "impact_arcane.png",
+   "frame_w": 96,
+   "frame_h": 96,
+   "frames": 8,
+   "fps": 16,
+   "loop": false,
+   "anchor": "center",
+   "blend": "normal (alpha); additive also fine for all but blunt/poison/frost"
+  },
+  "impact_poison": {
+   "file": "impact_poison.png",
+   "frame_w": 96,
+   "frame_h": 96,
+   "frames": 8,
+   "fps": 14,
+   "loop": false,
+   "anchor": "center",
+   "blend": "normal (alpha); additive also fine for all but blunt/poison/frost"
+  },
+  "impact_holy": {
+   "file": "impact_holy.png",
+   "frame_w": 96,
+   "frame_h": 96,
+   "frames": 8,
+   "fps": 14,
+   "loop": false,
+   "anchor": "center",
+   "blend": "normal (alpha); additive also fine for all but blunt/poison/frost"
+  },
+  "impact_crit": {
+   "file": "impact_crit.png",
+   "frame_w": 128,
+   "frame_h": 128,
+   "frames": 8,
+   "fps": 20,
+   "loop": false,
+   "anchor": "center",
+   "blend": "normal (alpha); additive also fine for all but blunt/poison/frost"
+  },
+  "hitflash_spark": {
+   "file": "hitflash_spark.png",
+   "frame_w": 64,
+   "frame_h": 64,
+   "frames": 4,
+   "fps": 24,
+   "loop": false,
+   "anchor": "center",
+   "blend": "normal (alpha); additive also fine for all but blunt/poison/frost"
+  }
+ },
+ "impact_mapping_suggestion": {
+  "sword/axe (Rusty Sword, Cinderblade edge, Crimson Fang)": "impact_slash",
+  "hammer/club, monster bites/slams": "impact_blunt",
+  "spear, arrows, spider/bat bites": "impact_pierce",
+  "burn, fireball, Ashkar": "impact_fire",
+  "freeze, Winter's Edge, Isolde": "impact_frost",
+  "Nightfall Staff bolts, Morgana, acolyte dark spark": "impact_arcane",
+  "poison inflict, slimes, spiders": "impact_poison",
+  "potions, well, heal, drain": "impact_holy",
+  "any critical hit": "impact_crit (+ hitflash_spark)"
+ },
+ "not_in_plan": "Boss intro and death dissolve effects are not listed under A4 in v4.3-plan.md (boss intros are L2, after v4.3), so they were not made."
+}
